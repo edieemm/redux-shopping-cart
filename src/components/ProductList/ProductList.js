@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProductListItem from '../ProductListItem/ProductListItem';
+import { connect } from 'react-redux';
 
 class ProductList extends Component {
 
@@ -7,7 +8,7 @@ class ProductList extends Component {
         return (
             <div>
                 <ul>
-                   {this.props.products.map((product, i) => {
+                   {this.props.reduxState.productReducer.map((product, i) => {
                        return (
                            <ProductListItem key={i} product={product} />
                        );
@@ -18,4 +19,8 @@ class ProductList extends Component {
     }
 }
 
-export default ProductList;
+const putStateOnProps = (reduxState) => ({ 
+    reduxState 
+})
+
+export default connect(putStateOnProps)(ProductList);
