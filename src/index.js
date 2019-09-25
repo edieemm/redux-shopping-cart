@@ -31,13 +31,21 @@ const checkoutReducer = (state = checkout, action) => {
     // TODO: Products added to the cart
     if (action.type === 'ADD_PRODUCT_TO_CART'){
         return {
-            total: state.total + action.payload.price, 
+            total: state.total + Number(action.payload.price), 
             products: [...state.products, action.payload]
         }
     } else if (action.type === 'CLEAR_CART'){
         return {
             ...state,
             products: []
+        }
+    } else if (action.type === 'DELETE_PRODUCT') {
+        let index = state.products.indexOf(action.payload);
+        let newList = state.products
+        newList.splice(index, 1)
+        return {
+            ...state,
+            products: newList
         }
     }
     return state;

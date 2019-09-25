@@ -10,13 +10,18 @@ class Checkout extends Component {
         this.props.dispatch({ type: 'CLEAR_CART' })
     }
 
+    handleRemoveItem = (product) => {
+        this.props.dispatch({ type: 'DELETE_PRODUCT', payload: product })
+
+    }
+
     render() {
         return (
             <div>
                 <h2>Checkout</h2>
                 <ul>
                     {this.props.reduxState.checkoutReducer.products.map((product) => {
-                        return <li key={product.name}>{product.name}: {product.price}</li>
+                        return <li key={product.name}>{product.name}: {product.price} <button onClick={() => this.handleRemoveItem(product)}>Remove Item</button></li>
                     })}
                 </ul>
                 <p>Total: {this.props.reduxState.checkoutReducer.total}</p>
