@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 
 
 class Checkout extends Component {
-
+    
     handleCheckout = () => {
         // TODO: Clear the cart and navigate to the product page
         this.props.dispatch({ type: 'CLEAR_CART' })
-
     }
 
     render() {
@@ -16,10 +15,11 @@ class Checkout extends Component {
             <div>
                 <h2>Checkout</h2>
                 <ul>
-                    {this.props.reduxState.checkoutReducer.map((product) => {
+                    {this.props.reduxState.checkoutReducer.products.map((product) => {
                         return <li key={product.name}>{product.name}: {product.price}</li>
                     })}
                 </ul>
+                <p>Total: {this.props.reduxState.checkoutReducer.total}</p>
                 <Link to="/">
                     <button onClick={this.handleCheckout}>Checkout</button>
                 </Link>

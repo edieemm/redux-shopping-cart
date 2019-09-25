@@ -13,6 +13,10 @@ const products = [
     { name: `Golden Honney O's`, price: 6.48 },
     { name: `Frosted Flakes`, price: 3.98 },
 ];
+const checkout = {
+    total: 0,
+    products: []
+}
 
 // Array of products, this reducer is complete
 const productReducer = (state = products, action) => {
@@ -23,12 +27,18 @@ const productReducer = (state = products, action) => {
 };
 
 // Items in the cart, this reducer is incomplete
-const checkoutReducer = (state = [], action) => {
+const checkoutReducer = (state = checkout, action) => {
     // TODO: Products added to the cart
     if (action.type === 'ADD_PRODUCT_TO_CART'){
-        return [...state, action.payload]
+        return {
+            total: state.total + action.payload.price, 
+            products: [...state.products, action.payload]
+        }
     } else if (action.type === 'CLEAR_CART'){
-        return []
+        return {
+            ...state,
+            products: []
+        }
     }
     return state;
 };
