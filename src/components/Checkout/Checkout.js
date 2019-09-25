@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom';
+
 
 class Checkout extends Component {
 
@@ -18,8 +20,9 @@ class Checkout extends Component {
                         return <li key={product.name}>{product.name}: {product.price}</li>
                     })}
                 </ul>
-
-                <button onClick={this.handleCheckout}>Checkout</button>
+                <Link to="/">
+                    <button onClick={this.handleCheckout}>Checkout</button>
+                </Link>
             </div>
         )
     }
