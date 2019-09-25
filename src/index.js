@@ -27,8 +27,9 @@ const checkoutReducer = (state = [], action) => {
     // TODO: Products added to the cart
     if (action.type === 'ADD_PRODUCT_TO_CART'){
         return [...state, action.payload]
+    } else if (action.type === 'CLEAR_CART'){
+        return []
     }
-    console.log('Cart: ', state)
     return state;
 };
 
